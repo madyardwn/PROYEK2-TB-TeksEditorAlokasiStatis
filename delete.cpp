@@ -8,11 +8,11 @@ void delete_rows (string mas[])
 {
 	int row1,row2;
 	printf("Masukkan baris yang ingin di hapus \n");
-	printf("From : ");
+	printf("Dari baris : ");
 	scanf("%d", &row1);
 	row1=row1-1;
 	
-	pritnf("\n To: ");
+	pritnf("\n Sampai Baris : ");
 	scanf("%d", &row2);
 	row2=row2-1;
 	
