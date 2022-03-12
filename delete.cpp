@@ -27,3 +27,6 @@ void delete_rows (string mas[])
 		file2<< mas[i]<<endl;
 	}
 }
+
+void delete_file(){
+}
