@@ -34,7 +34,7 @@ void delete_rows()
   fclose(fptr2);
 }
 
-// prototype function
+/*prototype function*/
 int destroy_file(char nama_file_temp[30]);
 
 void delete_file(){
