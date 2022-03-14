@@ -38,15 +38,15 @@ void delete_rows()
 int destroy_file(char nama_file_temp[30]);
 
 void delete_file(){
-    char namaFile[30];
-    bool statusFile;
+    char nama_file[30];
+    bool status_file;
     printf("\t\tMasukkan nama file yang akan dihapus: ");
-    scanf("%s", namaFile);
-    statusFile = destroyFile(namaFile);
-    if (statusFile == true){
-        printf("File : %s berhasil dihapus\n", namaFile);
+    scanf("%s", nama_file);
+    status_file = destroy_file(nama_file);
+    if (status_file == true){
+        printf("File : %s berhasil dihapus\n", nama_file);
     } else  {
-        printf("File : %s gagal dihapus atau file tidak ada di dalam direktori\n", namaFile);
+        printf("File : %s gagal dihapus atau file tidak ada di dalam direktori\n", nama_file);
     }
 }
 
@@ -57,4 +57,4 @@ int destroy_file(char nama_file_temp[30]) {
     } else {
         return false;
     }
-
+}
