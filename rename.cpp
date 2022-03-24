@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "del_rename.h"
 
 void rename_file()
 {

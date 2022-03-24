@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include "stdlib.h"
-#include "delete.h"
+#include "del_rename.h"
 
 void delete_rows()
 {
@@ -37,19 +37,6 @@ void delete_rows()
 /*prototype function*/
 int destroy_file(char nama_file_temp[30]);
 
-void delete_file(){
-    char nama_file[30];
-    bool status_file;
-    printf("Masukkan nama file yang akan dihapus : ");
-    scanf("%s", nama_file);
-    status_file = destroy_file(nama_file);
-    if (status_file == true){
-        printf("SUCCESS : %s berhasil dihapus\n", nama_file);
-    } else  {
-        printf("ERROR : %s gagal dihapus atau file tidak ada di dalam direktori\n", nama_file);
-    }
-}
-
 int destroy_file(char nama_file_temp[30]) {
     system("cls");
     if (remove(nama_file_temp) == 0) {
@@ -58,3 +45,18 @@ int destroy_file(char nama_file_temp[30]) {
         return false;
     }
 }
+
+void delete_file(){
+    char nama_file[30];
+    bool status_file;
+    printf("Masukkan nama file yang akan dihapus: ");
+    scanf("%s", nama_file);
+    status_file = destroy_file(nama_file);
+    if (status_file == true){
+        printf("SUCCESS : %s berhasil dihapus\n", nama_file);
+    } else  {
+        printf("ERROR : %s gagal dihapus\n", nama_file);
+    }
+}
+
+
