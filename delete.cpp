@@ -40,13 +40,13 @@ int destroy_file(char nama_file_temp[30]);
 void delete_file(){
     char nama_file[30];
     bool status_file;
-    printf("\t\tMasukkan nama file yang akan dihapus: ");
+    printf("Masukkan nama file yang akan dihapus : ");
     scanf("%s", nama_file);
     status_file = destroy_file(nama_file);
     if (status_file == true){
-        printf("File : %s berhasil dihapus\n", nama_file);
+        printf("SUCCESS : %s berhasil dihapus\n", nama_file);
     } else  {
-        printf("File : %s gagal dihapus atau file tidak ada di dalam direktori\n", nama_file);
+        printf("ERROR : %s gagal dihapus atau file tidak ada di dalam direktori\n", nama_file);
     }
 }
 
