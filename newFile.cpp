@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <windows.h>
 #include "text.h"
+#include "main.cpp"
 
 void gotoxy(int x, int y)
 {
