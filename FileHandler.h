@@ -9,4 +9,8 @@ void delete_file();
 void rename_file();
 void modify(char arr[MAX_ROWS][MAX_COLUMNS]);
 
+int duplicate();
+int finrep();
+int jumlah_kata();
+
 #endif
