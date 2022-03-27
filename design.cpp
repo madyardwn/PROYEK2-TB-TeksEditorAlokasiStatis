@@ -6,10 +6,7 @@
 using namespace std;
 
 #include "design.h"
-<<<<<<< HEAD
-=======
 #include "insert.h"
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 
 void gotoxy(int baris,int kolom)
 {
@@ -50,8 +47,6 @@ void loading()
 	system("cls");
 }
 
-<<<<<<< HEAD
-=======
 void border()
 {
 	int brs = MAX_ROWS;
@@ -74,7 +69,6 @@ void border()
 	gotoxy(0,0);	
 }
 
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 void clearscreen(){
 	printf("\nTekan Apapun Untuk Kembali!");
 	getch();

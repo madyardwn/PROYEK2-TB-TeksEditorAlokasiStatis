@@ -41,10 +41,7 @@ int main()
 				int baris = 0;
 				int kolom = 0;
 				
-<<<<<<< HEAD
-=======
 				printf("Hasil Ketikkan\n\n");
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 			    for (; baris <= MAX_ROWS-1; baris++)
 				{
 			    	for(; kolom <= MAX_COLUMNS-1; kolom++){
@@ -54,10 +51,6 @@ int main()
 					kolom = 0;
 				}
 				
-<<<<<<< HEAD
-				printf("\n");
-=======
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 				clearscreen();
 				
 				break;

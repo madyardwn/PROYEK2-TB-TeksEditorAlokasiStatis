@@ -3,10 +3,7 @@
 #include <stdbool.h>
 
 #include "insert.h"
-<<<<<<< HEAD
-=======
 #include "design.h"
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 
 void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 {
@@ -17,12 +14,9 @@ void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
     int baris = 0;
     int kolom = 0;
     
-<<<<<<< HEAD
-=======
     //Mengatur Tampilan
     border();
     
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
     // Menulis Pada Array
     while(1)
 	{   
@@ -71,8 +65,6 @@ bool Cek_Input(char ch)
 {
 	switch(ch)
 	{
-<<<<<<< HEAD
-=======
 		// Null
 		case 0:
 		{
@@ -80,7 +72,6 @@ bool Cek_Input(char ch)
 			break;
 		}
 		
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 		// Backspace
 		case 8:
 		{
@@ -102,8 +93,6 @@ bool Cek_Input(char ch)
 			break;
 		}
 		
-<<<<<<< HEAD
-=======
 		// Tab
 		case 9:
 		{
@@ -111,7 +100,6 @@ bool Cek_Input(char ch)
 			break;
 		}
 		
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 		// Normal
 		default:
 		{
@@ -135,45 +123,6 @@ bool Cek_Kolom(int baris, int kolom, char arr[MAX_ROWS][MAX_COLUMNS])
 
 void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COLUMNS])
 {
-<<<<<<< HEAD
-	char temp = NULL;
-	bool IsNull;
-	
-	// Backspace
-	if (*ch == 8)
-	{
-		if (*kolom == 0 and *baris == 0)
-		{
-			if (arr[*baris][*kolom] != NULL){
-				printf(" ");
-			}
-			*ch = NULL;
-			arr[*baris][*kolom] = *ch;
-		}else
-		
-		if (*kolom <= MAX_COLUMNS and *kolom != 0)
-		{
-			for (int i = *kolom; i <= MAX_COLUMNS; i++)
-			{
-				arr[*baris][i-1] = arr[*baris][i];
-				if (i == MAX_COLUMNS){
-					arr[*baris][i-1] = NULL;
-				}
-				gotoxy(*baris,i-1);
-				if(arr[*baris][i-1] == NULL){
-					printf(" ");
-				}else{
-					printf("%c", arr[*baris][i-1]);
-				}
-			}
-			*kolom = *kolom - 1;
-			
-			if (*kolom == 0 and arr[*baris-1][MAX_COLUMNS-1] != NULL and arr[*baris][0] == NULL)
-			{
-				if (*baris != 0){
-					*baris = *baris - 1;
-					*kolom = MAX_COLUMNS;	
-=======
 	int brs = 0, klm = 0, klm_1 = 0, temp;
 	bool status;
 	
@@ -360,60 +309,11 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 				klm = klm + 1;
 				if (klm_1 < MAX_COLUMNS){
 					klm_1 = klm + 1;
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 				}
 			}
 			gotoxy(*baris,*kolom);
 		}else
 			
-<<<<<<< HEAD
-		if (*kolom == 0 and *baris != 0)
-		{
-			if(arr[*baris][*kolom] != NULL){
-				temp = arr[*baris][*kolom];
-				for (int i = *kolom; i <= MAX_COLUMNS-1; i++)
-				{
-					if (i == MAX_COLUMNS-1){
-						arr[*baris][i] = NULL;
-					}else{
-						arr[*baris][i] = arr[*baris][i+1];
-					}
-					
-					gotoxy(*baris,i);
-					
-					if (arr[*baris][i] != NULL){
-						printf("%c", arr[*baris][i]);
-					}else{
-						printf(" ");
-					}
-				}
-			}
-			
-			*baris = *baris - 1;
-			for (int i = 0; i <= MAX_COLUMNS-1; i++){
-				if(arr[*baris][i] == NULL){
-					*kolom = i;
-					arr[*baris][*kolom] = temp;
-					gotoxy(*baris,*kolom);
-					printf("%c", arr[*baris][*kolom]);
-					*kolom = *kolom;
-					gotoxy(*baris,*kolom);
-					break;
-				}
-				
-				if (i == MAX_COLUMNS-1){	
-					*kolom = i;
-					arr[*baris][*kolom] = temp;
-					gotoxy(*baris,*kolom);
-					printf("%c", arr[*baris][*kolom]);
-					*kolom = *kolom;
-					gotoxy(*baris,*kolom);
-				}
-			}
-			gotoxy(*baris,*kolom);
-		}
-	}
-=======
 		if (*kolom == 0 and *baris != 0 and arr[*baris+1][*kolom] == NULL)
 		{
 			brs = *baris - 1;
@@ -430,7 +330,6 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 		}
 	}
 
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 	
 	// Enter
 	if (*ch == 13)
@@ -489,20 +388,12 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 						gotoxy(*baris,*kolom);
 					}else
 					
-<<<<<<< HEAD
-					if (*baris != MAX_ROWS and arr[*baris+1][0] != NULL){
-=======
 					if (*baris != MAX_ROWS and arr[*baris+1][0] != NULL)
 					{
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 						*baris = *baris + 1;
 						
 						if (arr[*baris][*kolom] != NULL and *kolom != MAX_COLUMNS){
 							gotoxy(*baris,*kolom);
-<<<<<<< HEAD
-							
-=======
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 						}else{
 							for(int i = 0; i <= MAX_COLUMNS; i++)
 							{
@@ -516,8 +407,6 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 							}
 							gotoxy(*baris,*kolom);
 						}
-<<<<<<< HEAD
-=======
 					}else
 					
 					if (arr[*baris+1][0] == NULL and *baris != MAX_ROWS)
@@ -531,7 +420,6 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 								break;
 							}
 						}
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 					}
 				}
 				break;
@@ -573,15 +461,7 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 			case 77:
 			{
 				if (*kolom <= MAX_COLUMNS)
-<<<<<<< HEAD
-				{
-					if (*kolom == 0 and *baris == 0 and arr[0][*kolom+1] == NULL){
-						gotoxy(*baris,*kolom);
-					}else
-					
-=======
 				{	
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 					if (*kolom <= MAX_COLUMNS and arr[*baris][*kolom] != NULL and (*kolom + 1) <= MAX_COLUMNS){
 						*kolom = *kolom + 1;
 						gotoxy(*baris,*kolom);
@@ -605,10 +485,6 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 							*kolom = i + 1;
 						}
 						gotoxy(*baris,*kolom);
-<<<<<<< HEAD
-					}
-					
-=======
 					}else
 					
 					if (*kolom != MAX_COLUMNS and arr[*baris][*kolom] != NULL){
@@ -632,7 +508,6 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 							}
 						}
 					}	
->>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 				}
 				break;
 			}
