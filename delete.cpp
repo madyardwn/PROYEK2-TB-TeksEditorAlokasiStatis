@@ -4,7 +4,6 @@
 #include "del_rename.h"
 
 /*prototype function*/
-int remove_file(char nama_file_temp[30]);
 
 int remove_file(char nama_file_temp[30]) {
     system("cls");
