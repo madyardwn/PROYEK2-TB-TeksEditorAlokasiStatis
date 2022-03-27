@@ -4,6 +4,7 @@
 
 #include "insert.h"
 #include "design.h"
+#include "count.h"
 
 void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 {
@@ -24,6 +25,8 @@ void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 		// Input Keyboard
 		fflush(stdin);
 		ch = getch();
+		
+		// Selesai Menulis
 		if (ch == 17){
 			break;
 		}
@@ -55,6 +58,9 @@ void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 				arr[baris][kolom] = ch;
 				kolom++;
 			}
+			//Menyaring Informasi
+			cursor_information(baris, kolom, arr);
+			//Pindah Kursor
 			gotoxy(baris,kolom);
 		}else{
 			Beep(1000,50);
