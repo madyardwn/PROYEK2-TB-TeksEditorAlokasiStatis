@@ -28,7 +28,7 @@ int main()
 		printf("  4. Duplicate File\n");
 		printf("  5. Find and Replace\n");
 		printf("  6. Jumlah Kata\n");
-		printf("  7. Theme\n");
+		printf("  7. Tema\n");
 		printf("  8. Exit\n\n");
 		printf("===============================================================================================================\n");
 		printf("===============|                      SILAHKAN PILIH MENU YANG DIINGINKAN                      |===============\n");
@@ -89,7 +89,7 @@ int main()
 			case 7:
 			{
 				system("cls");
-				themes();
+				menu_themes();
 				break;
 			}
 			
