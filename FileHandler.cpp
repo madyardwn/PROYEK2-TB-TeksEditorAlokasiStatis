@@ -10,6 +10,7 @@
 
 #include "FileHandler.h"
 #include "insert.h"
+#include "design.h"
 
 using namespace std;
 
@@ -102,8 +103,22 @@ void saveToFile(char arr[MAX_ROWS][MAX_COLUMNS]){
 	int baris;
 	int kolom;
 
+	system("cls");
+	printf("\n");
+	printf("\t ===============================\n");
+	printf("\t |    Melihat Preview Tulisan  |\n");
+	printf("\t |         Please Wait         |\n");
+	printf("\t |                             |\n");
+	printf("\t ===============================\n");
+	for (int i = 1; i <= 3; i++){
+		gotoxy(4,25);
+		printf("%d", i);
+		Sleep(850);
+	}
+	system("cls");
 	
-	printf("Hasil Ketikkan :\n");
+	//Print Array
+	border();
 	for (baris = 0; baris <= MAX_ROWS-1; baris++)
 	{
 		for(kolom = 0; kolom <= MAX_COLUMNS-1; kolom++){
