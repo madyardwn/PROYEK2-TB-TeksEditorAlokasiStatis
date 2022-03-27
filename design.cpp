@@ -6,6 +6,10 @@
 using namespace std;
 
 #include "design.h"
+<<<<<<< HEAD
+=======
+#include "insert.h"
+>>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 
 void gotoxy(int baris,int kolom)
 {
@@ -46,6 +50,31 @@ void loading()
 	system("cls");
 }
 
+<<<<<<< HEAD
+=======
+void border()
+{
+	int brs = MAX_ROWS;
+	int klm = MAX_COLUMNS;
+	
+	// Margin Kanan
+	for(brs = 0; brs < MAX_ROWS; brs++)
+	{	
+		gotoxy(brs,klm);
+		printf(" |");	
+	}
+	
+	// Margin Bawah
+	for(klm = 0; klm <= MAX_COLUMNS; klm++)
+	{	
+		gotoxy(brs,klm);
+		printf("-");	
+	}
+	printf("-");
+	gotoxy(0,0);	
+}
+
+>>>>>>> 9915021 (Versi 2 Input Handling & Kursor)
 void clearscreen(){
 	printf("\nTekan Apapun Untuk Kembali!");
 	getch();
