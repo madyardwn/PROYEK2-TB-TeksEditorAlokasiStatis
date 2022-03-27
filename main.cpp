@@ -6,22 +6,27 @@
 
 #include "insert.h"
 #include "design.h"
+#include "theme.h"
+#include "FileHandler.h"
 
 int main() 
 {
-	int pilihan;
-	char text_editor[MAX_ROWS][MAX_COLUMNS];
 	
+	char text_editor[MAX_ROWS][MAX_COLUMNS];
+	int pilihan;
 	while(1)
 	{
 		memset(text_editor, 0, sizeof(text_editor));
 		pilihan = 0;
-		
+		system("cls");
 		printf("===============================================================================================================\n");
 		printf("===============|                              >>>>>  MENU  <<<<<                               |===============\n");
 		printf("===============================================================================================================\n\n");
-		printf("  1. Create Text\n");
-		printf("  2. Exit\n\n");
+		printf("  1. Panduan\n"); // belum
+		printf("  2. Membuat File\n"); 
+		printf("  3. Daftar File\n");
+		printf("  4. Theme\n");
+		printf("  5. Exit\n\n");
 		printf("===============================================================================================================\n");
 		printf("===============|                      SILAHKAN PILIH MENU YANG DIINGINKAN                      |===============\n");
 		printf("===============================================================================================================\n\n");
@@ -33,59 +38,37 @@ int main()
 		switch(pilihan)
 		{
 			case 1:
-			{
-				loading();
-				Insert(text_editor);
-				system("cls");
-				
-				int baris = 0;
-				int kolom = 0;
-				
-				printf("Hasil Ketikkan\n\n");
-			    for (; baris <= MAX_ROWS-1; baris++)
-				{
-			    	for(; kolom <= MAX_COLUMNS-1; kolom++){
-			    		printf("%c",text_editor[baris][kolom]);
-					}
-					printf("\n");
-					kolom = 0;
-				}
-				
-				clearscreen();
-				
-				break;
-				
+			{				
+				break;	
 			}
 			
 			case 2:
 			{
-				return 0;
+				loading();				
+				system("cls");
+				Insert(text_editor);
+				saveToFile(text_editor);
 				break;
 			}
 			
 			case 3:
 			{
+				ListFile();
+				modify(text_editor);
 				break;
 			}
 			
 			case 4:
 			{
+				system("cls");
+				themes();
 				break;
 			}
 			
 			case 5:
 			{
-				break;
-			}
-			
-			case 6:
-			{
-				break;
-			}
-			
-			case 7:
-			{
 				return 0;
+				break;
 			}
 			
 			default:

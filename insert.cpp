@@ -7,23 +7,24 @@
 
 void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 {
-    system("cls");
     char ch;
     bool Validasi_Input;
-    gotoxy(0,0);
     int baris = 0;
     int kolom = 0;
     
     //Mengatur Tampilan
     border();
     
+    gotoxy(MAX_ROWS+1, 0);
+    printf("Tekan Ctrl + Q untuk selesai mengetik ...");
+    gotoxy(0,0);
     // Menulis Pada Array
     while(1)
 	{   
 		// Input Keyboard
 		fflush(stdin);
 		ch = getch();
-		if (ch == 'q'){
+		if (ch == 17){
 			break;
 		}
 		
@@ -117,7 +118,6 @@ bool Cek_Kolom(int baris, int kolom, char arr[MAX_ROWS][MAX_COLUMNS])
 			return true;
 		}
 	}
-	
 	return false;
 }
 
