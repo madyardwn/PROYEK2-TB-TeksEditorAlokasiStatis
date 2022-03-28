@@ -112,17 +112,17 @@ void custom_themes(bool *status)
 	{
 		system("cls");
 		printf("\n");
-		printf("\t ========================================\n");
-		printf("\t | Pilih Warna Yang Diinginkan:         |\n");
-		printf("\t | 1.Black           9 . Gray           |\n");		
-		printf("\t | 2.Blue            10. Light Blue     |\n");
-		printf("\t | 3.Green           11. Light Green    |\n");
-		printf("\t | 4.Aqua            12. Light Aqua     |\n");
-		printf("\t | 5.Red             13. Light Red      |\n");
-		printf("\t | 6.Purple          14. Light Purple   |\n");
-		printf("\t | 7.Yellow          15. Light Yellow   |\n");
-		printf("\t | 8.White           16. Bright White   |\n");
-		printf("\t ========================================\n\n");	
+		printf("\t =========================================\n");
+		printf("\t | Pilih Warna Yang Diinginkan:          |\n");
+		printf("\t | 1.Black           9 . Gray            |\n");		
+		printf("\t | 2.Blue            10. Light Blue      ||\n");
+		printf("\t | 3.Green           11. Light Green     |\n");
+		printf("\t | 4.Aqua            12. Light Aqua      |\n");
+		printf("\t | 5.Red             13. Light Red       |\n");
+		printf("\t | 6.Purple          14. Light Purple    |\n");
+		printf("\t | 7.Yellow          15. Light Yellow    |\n");
+		printf("\t | 8.White           16. Bright White    |\n");
+		printf("\t =========================================\n\n");	
 		printf("\t Note: tidak bisa memilih jenis warna yang sama!\n");
 		printf("\t Font      : ");
 		scanf("%d", &font);
