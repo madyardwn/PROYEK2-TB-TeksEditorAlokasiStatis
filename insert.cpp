@@ -1,29 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 #include "insert.h"
 #include "design.h"
+#include "count.h"
+
 
 void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 {
-    system("cls");
     char ch;
     bool Validasi_Input;
-    gotoxy(0,0);
     int baris = 0;
     int kolom = 0;
     
     //Mengatur Tampilan
     border();
     
+    gotoxy(MAX_ROWS+1, 0);
+    printf("Tekan Ctrl + Q untuk selesai mengetik ...");
+    gotoxy(0,0);
     // Menulis Pada Array
     while(1)
 	{   
 		// Input Keyboard
 		fflush(stdin);
 		ch = getch();
-		if (ch == 'q'){
+		
+		// Selesai Menulis
+		if (ch == 17){
 			break;
 		}
 		
@@ -54,6 +58,9 @@ void Insert(char arr[MAX_ROWS][MAX_COLUMNS])
 				arr[baris][kolom] = ch;
 				kolom++;
 			}
+			//Menyaring Informasi
+			cursor_information(baris, kolom, arr);
+			//Pindah Kursor
 			gotoxy(baris,kolom);
 		}else{
 			Beep(1000,50);
@@ -100,6 +107,13 @@ bool Cek_Input(char ch)
 			break;
 		}
 		
+		// ESC
+		case 27:
+		{
+			return true;
+			break;
+		}
+		
 		// Normal
 		default:
 		{
@@ -107,18 +121,6 @@ bool Cek_Input(char ch)
 			break;
 		}	
 	}		
-}
-
-bool Cek_Kolom(int baris, int kolom, char arr[MAX_ROWS][MAX_COLUMNS])
-{
-	for (; kolom <= MAX_COLUMNS-1; kolom++)
-	{
-		if (arr[baris][kolom] == NULL){
-			return true;
-		}
-	}
-	
-	return false;
 }
 
 void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COLUMNS])
@@ -130,6 +132,12 @@ void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COL
 	if (*ch == 0)
 	{
 		*ch = getch();
+	}
+	
+	// Esc
+	if (*ch == 27)
+	{
+		*ch = 0;
 	}
 	
 	// Tab
