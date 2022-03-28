@@ -26,10 +26,12 @@ int main()
 		printf("  2. Membuat File\n"); 
 		printf("  3. Daftar File\n");
 		printf("  4. Duplicate File\n");
-		printf("  5. Find and Replace\n");
-		printf("  6. Jumlah Kata\n");
-		printf("  7. Tema\n");
-		printf("  8. Exit\n\n");
+		printf("  5. Rename File\n");
+		printf("  6. Find and Replace\n");
+		printf("  7. Delete File\n");
+		printf("  8. Jumlah Kata\n");
+		printf("  9. Tema\n");
+		printf("  10. Exit\n\n");
 		printf("===============================================================================================================\n");
 		printf("===============|                      SILAHKAN PILIH MENU YANG DIINGINKAN                      |===============\n");
 		printf("===============================================================================================================\n\n");
@@ -72,12 +74,27 @@ int main()
 			case 5:
 			{
 				ListFile();
-				finrep();
+				rename_file();
 				system("pause");
 				break;
 			}
 			
 			case 6:
+			{
+				ListFile();
+				finrep();
+				system("pause");
+				break;
+			}
+			
+			case 7:
+			{
+				ListFile();
+				delete_file();
+				system("pause");
+				break;
+			}
+			case 8:
 			{
 				system("cls");
 				ListFile();
@@ -86,14 +103,14 @@ int main()
 				break;
 			}
 			
-			case 7:
+			case 9:
 			{
 				system("cls");
 				menu_themes();
 				break;
 			}
 			
-			case 8:
+			case 10:
 			{
 				return 0;
 				break;

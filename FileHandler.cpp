@@ -166,12 +166,39 @@ void delete_file(){
     bool status_file;
     printf("Masukkan nama file yang akan dihapus: ");
     scanf("%s", nama_file);
+    strcat(nama_file,".txt");
+    
     status_file = remove_file(nama_file);
     if (status_file == true){
         printf("SUCCESS : %s berhasil dihapus\n", nama_file);
     } else  {
         printf("ERROR : %s gagal dihapus\n", nama_file);
     }
+}
+
+void rename_file(){
+    char old_name[25], new_name[25];
+
+    /* Input nama file lama dan nama file baru */
+    printf("Masukan nama file yang akan diubah : ");
+    scanf("%s", old_name);
+    strcat(old_name,".txt");
+    
+    printf("masukan nama file baru : ");
+    scanf("%s", new_name);
+    strcat(new_name,".txt");
+
+
+    /* mengganti nama file lama menjadi nama file baru */
+    if (rename(old_name, new_name) == 0)
+    {
+        printf("File berhasil diganti namanya.\n");
+    }
+    else
+    {
+        printf("Nama file tidak dapat dirunah. Silakan periksa file yang anda miliki.\n");
+    }
+
 }
 
 int duplicate(){
