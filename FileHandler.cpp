@@ -245,7 +245,6 @@ int jumlah_kata(){
 	
 	printf("Nama file yang mau dibuka : "); fflush(stdin);
 	gets(namafile);
-	strcat(namafile,".txt");
 	
 	printf("File yang dibuka: %s\n\n", namafile);
 	fp=fopen(namafile,"rt");

@@ -16,11 +16,11 @@ struct element* createTable(char* find){
 	struct element *Table;
 	Table=(struct element*)malloc(sizeof(struct element)*(strlen(find)-1));
 	
-	for(i=0;i<strlen(find)-1;i++){//256 karakterlik bir dizi a?mak yerine 5 tane structure kulland?m;
+	for(i=0;i<strlen(find)-1;i++){
 		Table[i].ch=find[i];
 		Table[i].slide=strlen(find)-i-1;
 		for(j=0;j<i;j++){
-			if(find[i]==Table[j].ch){//harf ?nceden kullan?ld?ysa slide de?eri g?ncelleniyor
+			if(find[i]==Table[j].ch){
 				Table[j].slide=strlen(find)-i-1;
 			}
 		}
@@ -28,7 +28,7 @@ struct element* createTable(char* find){
 	return Table;
 }
 
-int getSlide(struct element* Table,char cur,char* find){//Table'dan slide miktar?n? g?nderiyor
+int getSlide(struct element* Table,char cur,char* find){
 	if(strlen(find)==1){
 		return 1;
 	}
@@ -54,14 +54,14 @@ int sensitive(char* text,char* find,char* replace,struct element* Table){
 		flag=0;
 		z=0;
 		for(j=0;j<strlen(find) && flag==0;j++){
-			if(text[i-j]!=find[strlen(find)-1-j]){//bulunmas? gereken stringe kadar gidiliyor
-				flag=1;//e?er farkl? bir harf bulunursa for d?ng?s?ne ve a?a??daki if statementlar?n i?ine girmiyor ve i'yi slide de?eri kadar ilerletiyor
+			if(text[i-j]!=find[strlen(find)-1-j]){
+				flag=1;
 				i+=getSlide(Table,text[i],find);
 				}
 			}
 			if(flag==0){
 				counter++;
-				if(strlen(replace)>strlen(find)){//eklenecek s?zc?k bulunacak olandan fazlaysa bulunan s?zc???n son harfinden itibaren aradaki fark kadar kayd?r?l?yor
+				if(strlen(replace)>strlen(find)){
 					shifter=strlen(replace)-strlen(find);
 					for(k=initial+shifter;k>i+shifter;k--){
 						text[k]=text[k-shifter];
@@ -72,14 +72,14 @@ int sensitive(char* text,char* find,char* replace,struct element* Table){
 					initial=initial+shifter;
 					i=i+shifter;
 				}
-				else if(strlen(replace)==strlen(find)){//eklenecek s?zc?k bulunacak s?zc?k direkt de?i?im yap?l?yor
+				else if(strlen(replace)==strlen(find)){
 					for(k=0;k<strlen(find);k++){
 						text[k+i-j+1]=replace[k];
 					}
 					i=i+shifter;
 				}
-				else{//eklenecek s?zc?k bulunan s?zc?kten k?saysa her ?ey aradaki fark kadar geri kayd?r?l?yor
-					shifter=strlen(find)-strlen(replace);//her ?eyi shifter kadar geri al
+				else{
+					shifter=strlen(find)-strlen(replace);
 
 					for(k=0;k<strlen(replace);k++){
 						text[k+i-j+1]=replace[k];
@@ -109,9 +109,9 @@ int notSensitive(char* text,char* find,char* replace,struct element* Table){
 		flag=0;
 		z=0;
 		for(j=0;j<strlen(find) && flag==0;j++){
-			if(text[i-j]!=find[strlen(find)-1-j] && text[i-j]+32!=find[strlen(find)-1-j]){//Not sensitive k?sm?nda, bulunacak s?zc?k ?nceden k???lt?ld??? i?in+++
-				flag=1;                                                                   //+++ sadece text'teki s?zc???n harflerinin b?y?k veya ayn? olmas?na bak?l?yor+++ 
-				if(text[i]>64 && text[i]<91){											  //+++ text'in harfinin k???k find'?n harfinin b?y?k olmas?na bakmaya gerek kalm?yor
+			if(text[i-j]!=find[strlen(find)-1-j] && text[i-j]+32!=find[strlen(find)-1-j]){
+				flag=1;                                                                   
+				if(text[i]>64 && text[i]<91){											  
 				i+=getSlide(Table,text[i]+32,find);
 			}
 				else{
@@ -121,7 +121,7 @@ int notSensitive(char* text,char* find,char* replace,struct element* Table){
 			}
 			if(flag==0){
 				counter++;
-				if(strlen(replace)>strlen(find)){//eklenecek s?zc?k bulunacak olandan fazlaysa bulunan s?zc???n son harfinden itibaren aradaki fark kadar kayd?r?l?yor
+				if(strlen(replace)>strlen(find)){
 					shifter=strlen(replace)-strlen(find);
 					for(k=initial+shifter;k>i+shifter;k--){
 						text[k]=text[k-shifter];
@@ -132,13 +132,13 @@ int notSensitive(char* text,char* find,char* replace,struct element* Table){
 					initial=initial+shifter;
 					i=i+shifter;
 				}
-				else if(strlen(replace)==strlen(find)){//eklenecek s?zc?k bulunacak s?zc?k direkt de?i?im yap?l?yor
+				else if(strlen(replace)==strlen(find)){
 					for(k=0;k<strlen(find);k++){
 						text[k+i-j+1]=replace[k];
 					}
 					i++;
 				}
-				else{//eklenecek s?zc?k bulunan s?zc?kten k?saysa her ?ey aradaki fark kadar geri kayd?r?l?yor
+				else{
 					shifter=strlen(find)-strlen(replace);
 
 					for(k=0;k<strlen(replace);k++){
@@ -147,8 +147,8 @@ int notSensitive(char* text,char* find,char* replace,struct element* Table){
 					for(k=i-shifter+1;k<initial;k++){
 						text[k]=text[k+shifter];
 					}
-					initial=initial+shifter;//yeni s?zc?k eskisinden b?y?k oldu?unda i daha ?nce traverse edilmemi? bir yeri g?steriyor+++
-					i=i-1;//+++Bu durum kelime veya harf ka??rmaya neden olabilir.
+					initial=initial+shifter;
+					i=i-1;
 				}
 			}
 		}
@@ -158,13 +158,14 @@ int notSensitive(char* text,char* find,char* replace,struct element* Table){
 finrep(){
 	char find[100];
 	char replace[100];
-	char text[2000];	//E?er text 1500den b?y?kse text array inin b?y?kl???n? artt?r?n.
+	char text[2000];	
 	FILE *fp;
 	char filename[100];
 	clock_t start,end;
 	
 	printf("Masukkan Nama File :");
 	gets(filename);
+	strcat(filename,".txt");
 	fp=fopen(filename,"rb+");
 	if(fp==NULL){
 		printf("File yang dipilih tidak ada!!");
@@ -198,7 +199,7 @@ finrep(){
 	scanf("%c",&state);
 	int counter;
 	
-	 start = clock();//Zaman ba?lang?c? inputlar al?nd?ktan sonra yap?l?yor
+	 start = clock();
 	
 	switch(state){
 		case '1':
@@ -206,9 +207,9 @@ finrep(){
 			fclose(fp);
 			
 			fp=fopen(filename,"w");
-			for(i=0;i<strlen(text);i++){//Carriage return  ('\r') fazladan 1 sat?r daha atlamas?na neden oluyor.+++
-				if(text[i]=='\r')//+++bunun olmamas? i?in yerine bo?luk ekliyorum
-				text[i]=' ';//Kod bu olaydan dolay? sat?r atlamal? caselerde de ?al???yor
+			for(i=0;i<strlen(text);i++){
+				if(text[i]=='\r')
+				text[i]=' ';
 			}
 			fputs(text,fp);
 			printf("%s",text);
@@ -219,8 +220,8 @@ finrep(){
 			break;
 			
 		default:
-			for(i=0;i<strlen(find);i++){//Zaten Not case sensitive se?ildi?i i?in find s?zc???n?n harflerinin b?y?k ya da k???k olmas?n? de?i?tirmek+++
-				if(find[i]<91 && find[i]>64){//+++ bir sorun yaratmayacakt?r
+			for(i=0;i<strlen(find);i++){
+				if(find[i]<91 && find[i]>64){
 					find[i]=find[i]+32;
 				}
 			}
@@ -230,9 +231,9 @@ finrep(){
 			
 			fclose(fp);
 			fp=fopen(filename,"w");
-			for(i=0;i<strlen(text);i++){//Carriage return -> '\r' fazladan 1 sat?r daha atlamas?na neden oluyor.+++
-				if(text[i]=='\r')//+++bunun olmamas? i?in yerine bo?luk ekliyorum
-				text[i]=' ';//Kod bu olaydan dolay? sat?r atlamal? caselerde de ?al???yor
+			for(i=0;i<strlen(text);i++){
+				if(text[i]=='\r')
+				text[i]=' ';
 			}
 			fputs(text,fp);
 			printf("%s",text);
