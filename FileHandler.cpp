@@ -69,7 +69,7 @@ void modify(char arr[MAX_ROWS][MAX_COLUMNS])
 	file = fopen(pilihFile, "r");
 	while(!feof(file)){
 		ch = fgetc(file);
-		if (ch == 13){
+		if (ch == '\n'){
 			arr[baris][kolom] = ch;
     		baris++;
     		kolom = 0;
@@ -78,7 +78,6 @@ void modify(char arr[MAX_ROWS][MAX_COLUMNS])
 			kolom++;
 		}
 	}
-	arr[baris][kolom] = '\0';
 	fclose(file);
 	
 	system("cls");
@@ -88,11 +87,24 @@ void modify(char arr[MAX_ROWS][MAX_COLUMNS])
 		{
 			printf("%c",arr[baris][kolom]);
 		}
+		printf("\n");
 		kolom = 0;
 	}
 	Insert(arr);
-	saveToFile(arr);
-	system("pause");
+	file = fopen(pilihFile, "w");
+		for (baris = 0; baris <= MAX_ROWS-1; baris++)
+		{
+			for(kolom = 0; kolom <= MAX_COLUMNS-1; kolom++)
+			{
+				if(arr[baris][kolom] == '\n'){
+					break;
+				}
+				fprintf(file, "%c",arr[baris][kolom]);
+			}
+			fprintf(file, "%c", '\n');
+			kolom = 0;
+		}
+	fclose(file);
 }
 
 void saveToFile(char arr[MAX_ROWS][MAX_COLUMNS]){
@@ -268,4 +280,5 @@ int jumlah_kata(){
 
 	printf("\n\n Jumlah kata file tersebut sebanyak: %d Kata\n\n", jumlah_kata);
   }
+  return 0;
 }
