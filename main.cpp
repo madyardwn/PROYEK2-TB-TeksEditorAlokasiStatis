@@ -43,7 +43,8 @@ int main()
 		switch(pilihan)
 		{
 			case 1:
-			{				
+			{
+				manualBook();	
 				break;	
 			}
 			

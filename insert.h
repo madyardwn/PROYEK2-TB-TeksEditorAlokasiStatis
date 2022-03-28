@@ -12,6 +12,5 @@
 void Insert(char arr[MAX_ROWS][MAX_COLUMNS]);
 bool Cek_Input(char ch);
 void Input_Handling(int *baris, int *kolom, char *ch, char arr[MAX_ROWS][MAX_COLUMNS]);
-bool Cek_Kolom(int baris, int kolom, char arr[MAX_ROWS][MAX_COLUMNS]);
 
 #endif
