@@ -206,18 +206,19 @@ int duplicate(){
 	
 	printf("Nama file yang akan diduplicate : "); fflush(stdin);
 	gets(nfile);
+	strcat(nfile,".txt");
 	ifstream inputFile(nfile); //mengambil file mana yg mau di duplicate
-	
 	
 	printf("Nama file yang sudah diduplicate : "); fflush(stdin);
 	gets(nb);
+	strcat(nb,".txt");
 	ofstream outFile(nb); //keluaran duplicate file
 	
 	while(inputFile.get(sfile)){
 		outFile.put(sfile);
 	}
 	if(outFile.put(sfile)){
-		printf("\n\nFile berhasil diduplicate!!!!");
+		printf("\n\nFile berhasil diduplicate!!!!\n");
 	}else{
 		printf("gagal duplicate");
 	}
