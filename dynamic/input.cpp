@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <conio.h>
+#include <windows.h>
 #include "input.h"
+#include "design.h"
 
-address Alokasi(char ch)
+address Alokasi(char ch, int baris, int kolom)
 {
 	address P;
 	P = (address) malloc (sizeof(element_list));
@@ -12,6 +14,8 @@ address Alokasi(char ch)
 	{
 		Prev(P) = NULL;
 		Info(P) = ch;
+		Baris(P) = baris;
+		Kolom(P) = kolom;
 		Next(P) = NULL;
 		
 		return P;
@@ -31,13 +35,13 @@ void input_keyboard(list *L)
 {
 	// Kamus Data
 	char ch;
+	int baris = 0, kolom = 0;
 	bool validasi_input;
 	address P;
 	
 	while (1)
 	{
 		ch = getch();
-		P = Alokasi(ch);
 		
 		// ctrl + q untuk keluar text editor
 		if (ch == 17)
@@ -47,11 +51,31 @@ void input_keyboard(list *L)
 		
 		// Cek Validasi Input
 		validasi_input = cek_input(ch);
-		if (validasi_input != true)
+		
+		// Jika tidak perlu di handling, maka input normal
+		if (validasi_input != true and (baris < MAX_ROWS-1 or kolom < MAX_COLUMNS))
 		{
-			normal_input(*(&L), P);
-		}else{
-			handling_input(*(&L), P);
+			// Cek Kolom
+			if (kolom == MAX_COLUMNS)
+			{
+				kolom = 0;
+				baris = baris + 1;
+			}
+			gotoxy(baris,kolom);
+			
+			P = Alokasi(ch, baris, kolom);
+			normal_input(*(&L), P, &baris, &kolom);
+		}else
+		
+		// Jika perlu di handling, maka input di handle terlebih dahulu
+		if (baris < MAX_ROWS-1 or kolom < MAX_COLUMNS)
+		{
+			handling_input(*(&L), ch, &baris, &kolom);
+		}else
+		
+		// Jika sudah melebihi batas baris dan kolom, maka input dihentikan
+		{
+			Beep(1000,50);
 		}
 	}
 }
@@ -104,20 +128,24 @@ bool cek_input(char ch)
 	}		
 }
 
-void normal_input(list *L, address P)
-{
+void normal_input(list *L, address P, int *baris, int *kolom)
+{	
 	// Kondisi Awal Menulis
 	if (Head(*L) == NULL and Current (*L) == NULL and Tail(*L) == NULL)
 	{
+		// Linked List
 		Head(*L) = P;
 		Tail(*L) = P;
 		Current(*L) = P;
+		
+		// Tampil Layar
 		printf("%c", Info(Current(*L)));
 	}else
 	
 	// Menulis di awal baris dan kolom 
 	if (Current(*L) == Head(*L))
 	{
+		// Linked List
 		Next(Head(*L)) = P;
 		Prev(P) = Head(*L);
 		Current(*L) = P; 
@@ -125,62 +153,123 @@ void normal_input(list *L, address P)
 		{
 			Tail(*L) = P;
 		}
+		
+		// Tampil Layar
 		printf("%c", Info(Current(*L)));
 	}else
 	
 	// Menulis di akhir baris dan kolom
 	if (Current(*L) == Tail(*L))
 	{
+		// Linked List
 		Next(Tail(*L)) = P;
 		Prev(P) = Tail(*L);
 		Tail(*L) = P;
 		Current(*L) = P;
+		
+		// Tampil Layar
 		printf("%c", Info(Current(*L)));
 	}else
 	
 	// Menulis di suatu baris dan kolom
 	{
+		// Linked List
 		Next(P) = Next(Current(*L));
 		Prev(Next(Current(*L))) = P;
 		Next(Current(*L)) = P;
 		Prev(P) = Current(*L);
 		Current(*L) = P;
+		
+		// Tampil Layar
 		printf("%c", Info(Current(*L)));
 	}
+	
+	*kolom = *kolom + 1;
 }
 
-void handling_input(list *L, address P)
+void handling_input(list *L, char ch, int *baris, int *kolom)
 {
 	// Backspace
-	if (Info(P) == 8)
+	if (ch == 8)
 	{
 		// Modul Backspace
 	}
 	
 	// Enter
-	if (Info(P) == 13)
+	if (ch == 13)
 	{
 		// Modul Enter
 	}
 	
-	// Arrow
-	if (Info(P) == -32)
+	// Arrows
+	if (ch == -32)
 	{
-		// Modul Arrow
+		arrows(*(&L), ch, *(&baris), *(&kolom));
 	}
 	
 	// Tab
-	if (Info(P) == 9)
+	if (ch == 9)
 	{
 		// Modul Tab
 	}
 	
 	// ESC
-	if (Info(P) == 27)
+	if (ch == 27)
 	{
 		// Modul ESC
 	}
+}
+
+void arrows(list *L, char ch, int *baris, int *kolom)
+{	
+	address P;
+	ch = getch();
+	
+	switch(ch)
+	{
+		// Up Arrow
+		case 72:
+		{
+			// Jika berada pada baris paling awal
+			if (*baris == 0)
+			{
+				gotoxy(*baris,*kolom);
+			}else
+			
+			if (*baris != 0)
+			{
+				P = Current(*L);
+				for (int i = *kolom; i >= 0; i--)
+				{
+					P = Prev(P);
+				}
+			}
+			break;
+		}
 		
+		// Down Arrow
+		case 80:
+		{
+			break;
+		}
+		
+		// Right Arrow
+		case 77:
+		{
+			break;
+		}
+		
+		// Left Arrow
+		case 75:
+		{
+			break;
+		}
+		
+		default:
+		{
+			break;
+		}
+	}
 }
 
 void tampil_list(list L)
@@ -195,5 +284,9 @@ void tampil_list(list L)
 	{
 		printf("%c", Info(P));
 		P = Next(P);
+		if (Baris(P) != 0 and Kolom(P) == 0)
+		{
+			printf("\n");
+		}
 	}
 }
