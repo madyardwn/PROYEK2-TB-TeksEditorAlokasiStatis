@@ -187,9 +187,13 @@ void tampil_list(list L)
 {
 	system("cls");
 	printf("Hasil Tulisan\n\n");
-	while(Head(L) != NULL)
+	
+	address P;
+	P = Head(L);
+	
+	while(P != NULL)
 	{
-		printf("%c", Info(Head(L)));
-		Head(L) = Next(Head(L));
+		printf("%c", Info(P));
+		P = Next(P);
 	}
 }
