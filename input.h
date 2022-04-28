@@ -31,11 +31,11 @@ typedef struct{
 
 address Alokasi(char ch, int baris, int kolom);
 void create_text_editor(list *L);
-void input_keyboard(list *L);
+void input_keyboard(list *L, int baris, int kolom);
 bool cek_input(char ch);
 void normal_input(list *L, address P, int *baris, int *kolom);
 void handling_input(list *L, char ch, int *baris, int *kolom);
 void arrows(list *L, char ch, int *baris, int *kolom);
-void tampil_list(list L);
+void tab(list L, int *baris, int *kolom);
 
 #endif

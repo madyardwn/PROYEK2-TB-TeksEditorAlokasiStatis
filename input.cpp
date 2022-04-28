@@ -31,11 +31,10 @@ void create_text_editor(list *L)
 	Tail(*L) = NULL;
 }
 
-void input_keyboard(list *L)
+void input_keyboard(list *L, int baris, int kolom)
 {
 	// Kamus Data
 	char ch;
-	int baris = 0, kolom = 0;
 	bool validasi_input;
 	address P;
 	
@@ -53,29 +52,14 @@ void input_keyboard(list *L)
 		validasi_input = cek_input(ch);
 		
 		// Jika tidak perlu di handling, maka input normal
-		if (validasi_input != true and (baris < MAX_ROWS-1 or kolom < MAX_COLUMNS))
+		if (validasi_input != true)
 		{
-			// Cek Kolom
-			if (kolom == MAX_COLUMNS)
-			{
-				kolom = 0;
-				baris = baris + 1;
-			}
-			gotoxy(baris,kolom);
-			
 			P = Alokasi(ch, baris, kolom);
 			normal_input(*(&L), P, &baris, &kolom);
 		}else
-		
 		// Jika perlu di handling, maka input di handle terlebih dahulu
-		if (baris < MAX_ROWS-1 or kolom < MAX_COLUMNS)
 		{
 			handling_input(*(&L), ch, &baris, &kolom);
-		}else
-		
-		// Jika sudah melebihi batas baris dan kolom, maka input dihentikan
-		{
-			Beep(1000,50);
 		}
 	}
 }
@@ -187,6 +171,17 @@ void normal_input(list *L, address P, int *baris, int *kolom)
 	*kolom = *kolom + 1;
 }
 
+void tab(list *L, int *baris, int *kolom)
+{
+	address P;
+	char ch = 32; // space
+	for(int i = 1; i <= 4; i++)
+	{
+		P = Alokasi(ch, *baris, *kolom);
+		normal_input(*(&L), P, *(&baris), *(&kolom));	
+	}
+}
+
 void handling_input(list *L, char ch, int *baris, int *kolom)
 {
 	// Backspace
@@ -210,7 +205,7 @@ void handling_input(list *L, char ch, int *baris, int *kolom)
 	// Tab
 	if (ch == 9)
 	{
-		// Modul Tab
+		tab(*(&L), *(&baris), *(&kolom));
 	}
 	
 	// ESC
@@ -268,25 +263,6 @@ void arrows(list *L, char ch, int *baris, int *kolom)
 		default:
 		{
 			break;
-		}
-	}
-}
-
-void tampil_list(list L)
-{
-	system("cls");
-	printf("Hasil Tulisan\n\n");
-	
-	address P;
-	P = Head(L);
-	
-	while(P != NULL)
-	{
-		printf("%c", Info(P));
-		P = Next(P);
-		if (Baris(P) != 0 and Kolom(P) == 0)
-		{
-			printf("\n");
 		}
 	}
 }
