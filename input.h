@@ -35,7 +35,7 @@ address Alokasi(char ch);
 void create_text_editor(list *L);
 void input_keyboard(list *L);
 bool cek_input(char ch);
-void normal_input(list *L, address P, address *Q, int *baris, int *kolom);
+void normal_input(list *L, address P, int *baris, int *kolom);
 void handling_input(list *L, char ch, int *baris, int *kolom);
 void arrows(list *L, char ch, int *baris, int *kolom);
 void enter(list *L, char ch, int *baris, int *kolom);
