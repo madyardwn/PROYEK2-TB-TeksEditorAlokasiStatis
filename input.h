@@ -40,6 +40,6 @@ void handling_input(list *L, char ch, int *baris, int *kolom);
 void arrows(list *L, char ch, int *baris, int *kolom);
 void enter(list *L, char ch, int *baris, int *kolom);
 void tampil_list(list L);
-void tab(List L);
+void tab();
 
 #endif
